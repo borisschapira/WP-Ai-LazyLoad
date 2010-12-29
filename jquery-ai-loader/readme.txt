@@ -9,18 +9,19 @@ add jquery lazy loading to images
 
 == Description ==
 
-add lazy loading to WP, more info at http://plugins.jquery.com/project/lazyload
+Delays the loading of images in long web pages by not loading immediatly 
+the images that are outside of the viewport (visible part of the web page). 
 
 == Installation ==
 
-unzip archive to wp-content/plugins directory, and activate it in Plugins page in wp-admin
+Unzip archive to wp-content/plugins directory, and activate it in Plugins page in wp-admin
 
 or you can cd into your wordpress_root/wp-contents/plugins and do:
 
-git clone git://github.com/ayn/wp-jquery-lazy-load.git
+git clone git://github.com/borisschapira/Ai-Loader--jQuery-Lazy-Load-.git
 
 == TODO ==
 
-There is some things to improve in the plugin :
+There are some things to improve in the plugin :
 - an administration panel for defining the css class that the lazy load script affects
 - a bugfix for jQuery/Prototype coexistence
