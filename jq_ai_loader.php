@@ -3,7 +3,7 @@
   Plugin Name: Ai Loader (jQuery Lazy Load)
   Plugin URI: http://github.com/borisschapira/Ai-Loader--jQuery-Lazy-Load-
   Description: Plugin for real lazy load of images
-  Version: v0.1
+  Version: v0.1.1
   Author: Boris Schapira
   Author URI: http://www.borisschapira.com
   */
@@ -33,21 +33,24 @@ jQuery(document).ready(function($){
 EOF;
 }
 
-function jquery_lazy_load_post_image_html( $html, $post_id, $post_image_id ) {	$log = false;
+function jquery_lazy_load_post_image_html( $html, $post_id, $post_image_id ) {	
+	$log = false;
 	// Get the source of the image
 	$doc=new DOMDocument();
 	$doc->loadHTML($html);	
 	$xml=simplexml_import_dom($doc);
-	$images=$xml->xpath('//img');		if($log) $scriptToAdd = '<script type="text/javascript">';
+	$images=$xml->xpath('//img');		
+	if($log) $scriptToAdd = '<script type="text/javascript">';
 	if(count($images) == 1) // The img source has been found	
 	{
-		$source = $images[0]['src'];		
+		$source = $images[0]['src'];
+		$html = str_replace('class="', 'class="src-'.esc_attr(base64_encode($source)).' ', $html);
+		$html =  str_replace('src=', 'data-src=', $html);		
 		if($log) {
 			$scriptToAdd = $scriptToAdd.'console.log("Source : '.esc_attr($source).'");';
 			$scriptToAdd = $scriptToAdd.'console.log("Encoded : '.esc_attr(base64_encode($source)).'");';
+			$scriptToAdd = $scriptToAdd.'console.log("New source: '.esc_attr($html).'");';
 		}
-		str_replace('class="', 'class="'.esc_attr(base64_encode($source)), $html);
-		str_replace('src=', 'data-src=', $html);
 	}
 	if($log) {
 		$scriptToAdd = $scriptToAdd.'</script>';

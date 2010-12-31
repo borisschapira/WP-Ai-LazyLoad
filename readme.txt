@@ -32,6 +32,8 @@ jQuery and Prototype conflicts.
 
 == Changelog ==
 
-= 1.0 =
+= 0.1 =
 * Enable lazy loading for wp-post images
+= 0.1.1 =
+* Bug fix
 
